@@ -159,14 +159,6 @@ Significa que não há registros para o filtro especificado. Verifique:
 
 ---
 
-## 📖 Documentação Adicional
-
-- [GUIA_EXERCICIOS_6_23.md](GUIA_EXERCICIOS_6_23.md) - Detalhes dos exercícios 6-23
-- [GUIA_EXERCICIOS_TENTATIVAS_SENHA.md](GUIA_EXERCICIOS_TENTATIVAS_SENHA.md) - Detalhes dos exercícios 1-5
-- [exercicios.md](exercicios.md) - Especificações originais
-
----
-
 ## 💡 Exemplo de Uso Completo
 
 ```bash
@@ -189,6 +181,5 @@ bash exercicio23_tempo_logado_usuario.sh `whoami`
 ---
 
 **Versão**: 1.0  
-**Data**: Março 2026  
 **Compatibilidade**: Linux (Debian/Ubuntu, RedHat/CentOS)
 # exercicios_logs
