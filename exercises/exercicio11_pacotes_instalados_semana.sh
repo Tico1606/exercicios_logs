@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# EXERCICIO 11: Listar pacotes instalados na ultima semana
-# Objetivo: mostrar a data da instalacao e o nome do pacote
-# Arquivos de log utilizados: /var/log/dpkg.log, /var/log/dnf.log ou /var/log/yum.log
 
 LOG_FILES=("/var/log/dpkg.log" "/var/log/dnf.log" "/var/log/yum.log")
 LOG_FILE=""
@@ -26,9 +23,6 @@ echo
 if [ "$LOG_FILE" = "/var/log/dpkg.log" ]; then
     DATA_LIMITE=$(date -d '7 days ago' +%F)
 
-    # Comando explicado:
-    # awk: no dpkg.log a data ja vem em formato YYYY-MM-DD, o que permite comparacao direta
-    # $3 == "install": mantem apenas operacoes de instalacao
 
     awk -v limite="$DATA_LIMITE" '$1 >= limite && $3 == "install" {
         printf "Data/Hora: %-19s | Pacote: %-35s | Versao: %s\n", $1 " " $2, $4, $5
@@ -36,9 +30,6 @@ if [ "$LOG_FILE" = "/var/log/dpkg.log" ]; then
 else
     AGORA=$(date +%s)
 
-    # Comando explicado:
-    # logs yum/dnf usam mes por extenso, entao convertemos a data para epoch com mktime
-    # e filtramos apenas eventos mais novos que 7 dias
 
     awk -v agora="$AGORA" '
         BEGIN {

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# EXERCICIO 6: Mostrar a data e a hora do ultimo boot do sistema
-# Objetivo: identificar quando o sistema foi inicializado pela ultima vez
-# Arquivo de log utilizado: /var/log/wtmp
 
 WTMP_FILE="/var/log/wtmp"
 
@@ -20,11 +17,6 @@ echo "=== ULTIMO BOOT DO SISTEMA ==="
 echo "Arquivo de log utilizado: $WTMP_FILE"
 echo
 
-# Comando explicado:
-# last -x -f /var/log/wtmp: le eventos especiais de boot, shutdown e runlevel
-# awk '/reboot/': mantem apenas eventos de inicializacao
-# exit na primeira linha: 'last' ja retorna em ordem decrescente, entao a primeira
-#                         ocorrencia de reboot representa o boot mais recente
 
 last -x -f "$WTMP_FILE" | \
     awk '/reboot/ {

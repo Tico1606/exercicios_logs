@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# EXERCICIO 20: Identificar pacotes atualizados no sistema
-# Objetivo: mostrar o nome do pacote e a data da atualizacao
-# Arquivos de log utilizados: /var/log/dpkg.log, /var/log/dnf.log ou /var/log/yum.log
 
 LOG_FILES=("/var/log/dpkg.log" "/var/log/dnf.log" "/var/log/yum.log")
 LOG_FILE=""

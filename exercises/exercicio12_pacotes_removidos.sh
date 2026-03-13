@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# EXERCICIO 12: Identificar todos os pacotes removidos do sistema
-# Objetivo: listar a data da remocao e o nome do pacote removido
-# Arquivos de log utilizados: /var/log/dpkg.log, /var/log/dnf.log ou /var/log/yum.log
 
 LOG_FILES=("/var/log/dpkg.log" "/var/log/dnf.log" "/var/log/yum.log")
 LOG_FILE=""
@@ -24,14 +21,10 @@ echo "Arquivo de log utilizado: $LOG_FILE"
 echo
 
 if [ "$LOG_FILE" = "/var/log/dpkg.log" ]; then
-    # Comando explicado:
-    # no dpkg.log, operacoes de remocao aparecem como 'remove' ou 'purge'
     awk '$3 == "remove" || $3 == "purge" {
         printf "Data/Hora: %-19s | Acao: %-7s | Pacote: %-35s | Versao: %s\n", $1 " " $2, $3, $4, $5
     }' "$LOG_FILE"
 else
-    # Comando explicado:
-    # em logs RPM, os eventos aparecem como 'Removed:' ou 'Erased:'
     awk '/Removed:|Erased:/ {
         if (match($0, /(Removed:|Erased:) (.*)/, partes)) {
             printf "Data/Hora: %-19s | Acao: %-7s | Pacote: %s\n", $1 " " $2 " " $3, partes[1], partes[2]

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# EXERCICIO 7: Listar eventos de desligamento e reinicializacao do sistema
-# Objetivo: mostrar todos os eventos de shutdown e reboot encontrados no historico
-# Arquivo de log utilizado: /var/log/wtmp
 
 WTMP_FILE="/var/log/wtmp"
 
@@ -20,10 +17,6 @@ echo "=== EVENTOS DE SHUTDOWN E REBOOT ==="
 echo "Arquivo de log utilizado: $WTMP_FILE"
 echo
 
-# Comando explicado:
-# last -x: le eventos especiais do arquivo wtmp
-# egrep 'reboot|shutdown': filtra somente inicializacoes e desligamentos
-# awk: organiza a saida em colunas mais legiveis
 
 last -x -f "$WTMP_FILE" | \
     egrep 'reboot|shutdown' | \

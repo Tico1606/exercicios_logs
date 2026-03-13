@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# EXERCICIO 13: Rastrear o uso de apt, apt-get, dnf, yum ou dpkg
-# Objetivo: mostrar quem executou o comando e qual acao foi realizada
-# Arquivos de log utilizados: /var/log/auth.log, /var/log/secure ou /var/log/audit/audit.log
 
 LOG_FILES=("/var/log/auth.log" "/var/log/secure" "/var/log/audit/audit.log")
 LOG_FILE=""

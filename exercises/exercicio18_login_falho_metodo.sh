@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# EXERCICIO 18: Extrair usuario e metodo de autenticacao de cada login falho
-# Objetivo: mostrar, para cada tentativa falha, qual usuario foi usado e por qual metodo
-# Arquivos de log utilizados: /var/log/auth.log ou /var/log/secure
 
 if [ -f /var/log/auth.log ]; then
     LOG_FILE="/var/log/auth.log"
@@ -17,9 +14,6 @@ echo "=== LOGIN FALHO: USUARIO E METODO DE AUTENTICACAO ==="
 echo "Arquivo de log utilizado: $LOG_FILE"
 echo
 
-# Comando explicado:
-# grep -Ei: filtra eventos tipicos de falha de autenticacao
-# awk: extrai usuario e metodo a partir do nome do processo e do texto do evento
 
 grep -Ei 'Failed password|authentication failure|FAILED LOGIN|Login incorrect|Invalid user' "$LOG_FILE" | \
     awk '{

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# EXERCICIO 14: Calcular o tempo de atividade entre um boot e o desligamento seguinte
-# Objetivo: analisar o ultimo ciclo completo de boot -> shutdown encontrado em /var/log/wtmp
-# Arquivo de log utilizado: /var/log/wtmp
 
 WTMP_FILE="/var/log/wtmp"
 
@@ -20,10 +17,6 @@ echo "=== TEMPO DE ATIVIDADE DO SISTEMA ==="
 echo "Arquivo de log utilizado: $WTMP_FILE"
 echo
 
-# Comando explicado:
-# last -xF: mostra eventos especiais com data/hora completa
-# awk: encontra primeiro shutdown e o reboot imediatamente anterior a ele,
-#      formando o ciclo completo mais recente
 
 PAR_EVENTOS=$(last -xF -f "$WTMP_FILE" | awk '
     /shutdown/ && !shutdown_encontrado {

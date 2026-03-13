@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# EXERCICIO 23: Calcular quanto tempo um usuario permaneceu logado no sistema
-# Objetivo: listar as sessoes registradas e somar a duracao total das sessoes encerradas
-# Arquivo de log utilizado: /var/log/wtmp
 
 if [ -z "$1" ]; then
     echo "Uso: $0 nome_do_usuario"
@@ -36,9 +33,6 @@ fi
 echo "$SESSOES"
 echo
 
-# Comando explicado:
-# a duracao calculada pelo comando 'last' aparece no final da linha entre parenteses
-# o awk abaixo soma todas as duracoes ja encerradas, no formato HH:MM ou D+HH:MM
 
 echo "$SESSOES" | awk '
     function soma_duracao(texto, dias, horas, minutos) {

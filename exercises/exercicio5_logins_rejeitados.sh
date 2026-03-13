@@ -1,13 +1,6 @@
 #!/bin/bash
 
-# EXERCÍCIO 5: Identificar logins rejeitados por outros motivos
-# Objetivo: Encontrar logins rejeitados por:
-#           - Usuários inexistentes
-#           - Falta de permissão
-#           - Outros motivos de rejeição
-# Arquivo de log utilizado: /var/log/auth.log (ou /var/log/secure em sistemas RedHat)
 
-# Verificar qual arquivo de log existe no sistema
 if [ -f /var/log/auth.log ]; then
     LOG_FILE="/var/log/auth.log"
 elif [ -f /var/log/secure ]; then
@@ -26,21 +19,15 @@ echo "  3. Outros motivos de rejeição"
 echo "====================================================="
 echo
 
-# Extrair todos os tipos de falhas de login
-# grep: busca por linhas que indicam rejeição de login
-# awk: extrai e categoriza os motivos
 
 grep -E "(Invalid user|User.*not known|Permission denied|Authentication failure)" "$LOG_FILE" | \
     awk '{
-        # Extrai data e hora (MMM DD HH:MM:SS)
         data = $1 " " $2 " " $3
         hora = $4
         
-        # Determina o tipo de falha
         tipo_falha = "Outro motivo"
         usuario = "desconhecido"
         
-        # Procura pelo nome do usuário
         for (i=1; i<=NF; i++) {
             if ($i == "user=" || $i == "User") {
                 if ($i == "user=") {
@@ -53,7 +40,6 @@ grep -E "(Invalid user|User.*not known|Permission denied|Authentication failure)
             }
         }
         
-        # Categoriza o motivo da falha
         if ($0 ~ /Invalid user/) {
             tipo_falha = "Usuário inexistente (Invalid user)"
         } else if ($0 ~ /not known/) {
@@ -72,7 +58,6 @@ echo
 echo "====================================================="
 echo
 
-# Também gera um sumário por tipo de falha
 echo "SUMÁRIO POR TIPO DE FALHA:"
 echo
 

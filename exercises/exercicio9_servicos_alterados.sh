@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# EXERCICIO 9: Listar servicos que foram iniciados ou parados recentemente
-# Objetivo: exibir data/hora e nome dos servicos com alteracao de status
-# Arquivos de log utilizados: /var/log/syslog ou /var/log/messages
 
 LOG_FILES=("/var/log/syslog" "/var/log/messages")
 LOG_FILE=""
@@ -23,9 +20,6 @@ echo "=== SERVICOS INICIADOS OU PARADOS RECENTEMENTE ==="
 echo "Arquivo de log utilizado: $LOG_FILE"
 echo
 
-# Comando explicado:
-# grep -Ei: encontra mensagens tipicas do systemd e scripts de servico
-# awk: extrai a data/hora e o nome do servico a partir do texto 'Started/Stopped/Starting/Stopping'
 
 grep -Ei 'systemd\[[0-9]+\]: (Started|Stopped|Starting|Stopping|Restarted|Reloaded)|service.*(started|stopped)' "$LOG_FILE" | \
     awk '{

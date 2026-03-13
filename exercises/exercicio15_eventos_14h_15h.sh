@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# EXERCICIO 15: Exibir eventos ocorridos entre 14h e 15h de um dia especifico
-# Objetivo: filtrar um log escolhido para mostrar somente eventos do periodo pedido
-# Arquivo de log padrao: /var/log/syslog (ou /var/log/messages)
 
 if [ -z "$1" ]; then
     echo "Uso: $0 AAAA-MM-DD [arquivo_de_log]"
@@ -41,9 +38,6 @@ echo "Data filtrada: $DATA_ALVO"
 echo "Arquivo de log utilizado: $LOG_FILE"
 echo
 
-# Comando explicado:
-# awk compara o mes, o dia e a hora do campo HH:MM:SS do syslog
-# o intervalo usado e [14:00:00, 15:00:00), ou seja, inclui 14:59:59
 
 awk -v mes="$MES" -v dia="$DIA" '$1 == mes && ($2 + 0) == (dia + 0) && $3 >= "14:00:00" && $3 < "15:00:00" {
     print
